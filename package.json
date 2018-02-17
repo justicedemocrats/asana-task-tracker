@@ -1,0 +1,25 @@
+{
+  "name": "asana-task-tracker",
+  "version": "1.0.0",
+  "description": "Send a webhook to Zapier on Asana webhooks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justicedemocrats/asana-task-tracker.git"
+  },
+  "keywords": [
+    "asana",
+    "webhook",
+    "zapier",
+    "node"
+  ],
+  "author": "Ben Packer <ben.paul.ryan.packer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justicedemocrats/asana-task-tracker/issues"
+  },
+  "homepage": "https://github.com/justicedemocrats/asana-task-tracker#readme"
+}
