@@ -13,27 +13,28 @@ app.get("/", function(req, res) {
 });
 
 app.post("/handle", function(req, res) {
-  const events = res.body.events;
-  events.forEach(e => {
-    if (e.type == "task") {
-      client.tasks.get(e.resource).then(task => {
-        e.task = task;
+  if (req.body.events) {
+    events.forEach(e => {
+      if (e.type == "task") {
+        client.tasks.findById(e.resource).then(task => {
+          e.task = task;
 
-        request
-          .post(process.env.ZAP_URL)
-          .send(e)
-          .end((err, res) => {
-            if (err) {
-              return console.log(
-                `Could not sync ${JSON.stringify(e)}: ${JSON.stringify(err)}`
-              );
-            }
+          request
+            .post(process.env.ZAP_URL)
+            .send(e)
+            .end((err, res) => {
+              if (err) {
+                return console.log(
+                  `Could not sync ${JSON.stringify(e)}: ${JSON.stringify(err)}`
+                );
+              }
 
-            console.log(`Sent off ${JSON.stringify(e)}`);
-          });
-      });
-    }
-  });
+              console.log(`Sent off ${JSON.stringify(e)}`);
+            });
+        });
+      }
+    });
+  }
 
   res.sendStatus(200);
 });
