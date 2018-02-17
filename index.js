@@ -14,7 +14,7 @@ app.get("/", function(req, res) {
 
 app.post("/handle", function(req, res) {
   if (req.body.events) {
-    events.forEach(e => {
+    req.body.events.forEach(e => {
       if (e.type == "task") {
         client.tasks.findById(e.resource).then(task => {
           e.task = task;
