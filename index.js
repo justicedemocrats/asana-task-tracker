@@ -9,6 +9,10 @@ var client = asana.Client.create().useAccessToken(process.env.ASANA_KEY);
 
 app.use(bodyParser.json());
 
+app.get("/", function(req, res) {
+  res.status(200).send("hey there! i'm just hanging out over here.");
+});
+
 app.post("/handle", function(req, res) {
   const events = res.body.events;
   events.forEach(e => {
