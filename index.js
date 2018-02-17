@@ -36,9 +36,12 @@ app.post("/handle", function(req, res) {
     });
   }
 
-  if (req.headers["X-Hook-Secret"]) {
+  if (req.headers["X-Hook-Secret"] || req.headers["x-hook-secret"]) {
     return res
-      .set("X-Hook-Secret", req.headers["X-Hook-Secret"])
+      .set(
+        "X-Hook-Secret",
+        req.headers["X-Hook-Secret"] || req.headers["x-hook-secret"]
+      )
       .sendStatus(200);
   } else {
     return res.sendStatus(200);
