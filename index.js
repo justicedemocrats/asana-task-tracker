@@ -36,7 +36,13 @@ app.post("/handle", function(req, res) {
     });
   }
 
-  res.sendStatus(200);
+  if (req.headers["X-Hook-Secret"]) {
+    return res
+      .set("X-Hook-Secret", req.headers["X-Hook-Secret"])
+      .sendStatus(200);
+  } else {
+    return res.sendStatus(200);
+  }
 });
 
 app.listen(process.env.PORT || 3000);
